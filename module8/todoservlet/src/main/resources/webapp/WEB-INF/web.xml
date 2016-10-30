@@ -1,0 +1,21 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Sustavov tasks list</display-name>
+    <description>Time manager list</description>
+
+    <servlet>
+        <servlet-name>Tasks</servlet-name>
+        <servlet-class>timemanagement.TasksServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Tasks</servlet-name>
+        <url-pattern>/addList</url-pattern>
+        <url-pattern>/updateList</url-pattern>
+    </servlet-mapping>
+
+</web-app>
