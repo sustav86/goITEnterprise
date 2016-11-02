@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
@@ -20,14 +21,29 @@ public class TasksServlet extends HttpServlet {
     private String tablePatternLines = "<tr>\n<td>param0</td>\n<td>param1</td>";
 
     @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.service(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getResponse(request, response);
 
     }
 
-    private void getResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private synchronized void getResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         String bufferLine = "";
+
+        HttpSession session = request.getSession(true);
+        Map<Integer, String> taskList = (Map<Integer, String>) session.getAttribute("taskList");
+        if (taskList == null) {
+            taskList = new HashMap<>();
+
+        }else {
+
+        }
+        session.setAttribute("taskList", taskList);
 
         if (request.getRequestURI().contains("updateList")) {
             for (Map.Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
