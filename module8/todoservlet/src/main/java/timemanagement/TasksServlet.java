@@ -13,17 +13,13 @@ import java.util.*;
  * Created by ukr-sustavov on 28.10.2016.
  */
 public class TasksServlet extends HttpServlet {
-    private Map<Integer, String> taskList = new HashMap<>();
+    private Map<Integer, String> taskList;
     private static final String DIV = "#";
     private int checkId;
     private String checkboxPatternLine = "<td><input type=\"checkbox\" name=\"paramCheck\"></td></tr>\n";
     private String dockType = "<!doctype html public \" -//w3c//dtd html 4.0 transitional//en\">\n";
     private String tablePatternLines = "<tr>\n<td>param0</td>\n<td>param1</td>";
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.service(req, resp);
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +27,7 @@ public class TasksServlet extends HttpServlet {
 
     }
 
+    @SuppressWarnings("unchecked")
     private synchronized void getResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         String bufferLine = "";
@@ -39,10 +36,8 @@ public class TasksServlet extends HttpServlet {
         Map<Integer, String> taskList = (Map<Integer, String>) session.getAttribute("taskList");
         if (taskList == null) {
             taskList = new HashMap<>();
-
-        }else {
-
         }
+
         session.setAttribute("taskList", taskList);
 
         if (request.getRequestURI().contains("updateList")) {
