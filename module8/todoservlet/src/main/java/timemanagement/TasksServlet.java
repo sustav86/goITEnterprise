@@ -28,7 +28,7 @@ public class TasksServlet extends HttpServlet {
     }
 
     @SuppressWarnings("unchecked")
-    private synchronized void getResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void getResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         String bufferLine = "";
 
