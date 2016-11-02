@@ -13,7 +13,6 @@ import java.util.*;
  * Created by ukr-sustavov on 28.10.2016.
  */
 public class TasksServlet extends HttpServlet {
-    private Map<Integer, String> taskList;
     private static final String DIV = "#";
     private int checkId;
     private String checkboxPatternLine = "<td><input type=\"checkbox\" name=\"paramCheck\"></td></tr>\n";
