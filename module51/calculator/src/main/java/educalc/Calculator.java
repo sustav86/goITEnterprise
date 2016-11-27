@@ -29,7 +29,7 @@ public class Calculator {
                 if (line.contains("set")) {
                     mainCalc.setCurrentType(line.split(" ")[1]);
                 } else {
-                    System.out.println(mainCalc.getResult(line));
+                    System.out.println(line + "=" + mainCalc.getResult(line));
                 }
 
                 line = scanner.nextLine();
